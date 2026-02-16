@@ -3,7 +3,7 @@ interface ErrorStateProps {
 }
 
 function ErrorState({ message }: ErrorStateProps) {
-  return <p className="status error">Error: {message}</p>;
+  return <p className="my-3 text-red-600">Error: {message}</p>;
 }
 
 export default ErrorState;

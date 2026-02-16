@@ -98,9 +98,13 @@ function PostFormPage() {
 
   return (
     <section>
-      <div className="section-title">
-        <h2>{isEditMode ? 'Edit Post' : 'Create Post'}</h2>
-        <Link to="/posts">Back to list</Link>
+      <div className="mb-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-2xl font-bold">
+          {isEditMode ? 'Edit Post' : 'Create Post'}
+        </h2>
+        <Link className="text-blue-700 hover:underline" to="/posts">
+          Back to list
+        </Link>
       </div>
 
       {submitError ? <ErrorState message={submitError} /> : null}

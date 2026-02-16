@@ -5,12 +5,14 @@ import PostsListPage from './pages/PostsListPage';
 
 function App() {
   return (
-    <div className="app-shell">
-      <header>
-        <h1>JSONPlaceholder Posts</h1>
+    <div className="mx-auto max-w-[960px] p-5">
+      <header className="mb-6">
+        <h1 className="m-0 text-3xl font-bold">
+          JSONPlaceholder Posts
+        </h1>
       </header>
 
-      <main>
+      <main className="rounded-[10px] bg-white p-5 shadow-sm">
         <Routes>
           <Route
             path="/"

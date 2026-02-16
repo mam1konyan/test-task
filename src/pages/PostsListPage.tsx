@@ -30,9 +30,12 @@ function PostsListPage() {
 
   return (
     <section>
-      <div className="section-title">
-        <h2>Posts</h2>
-        <Link className="primary" to="/posts/new">
+      <div className="mb-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-2xl font-bold">Posts</h2>
+        <Link
+          className="inline-flex rounded-lg bg-blue-700 px-[0.9rem] py-2 text-[0.95rem] text-white hover:bg-blue-800"
+          to="/posts/new"
+        >
           Create Post
         </Link>
       </div>
@@ -42,7 +45,7 @@ function PostsListPage() {
       ) : null}
       {error ? <ErrorState message={error} /> : null}
 
-      <div className="post-grid">
+      <div className="grid gap-[0.9rem]">
         {posts.map(post => (
           <PostCard
             key={post.id}

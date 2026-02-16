@@ -54,32 +54,44 @@ function PostDetailsPage() {
 
   return (
     <section>
-      <div className="section-title">
-        <h2>Post Details</h2>
-        <div className="actions-inline">
-          <Link to={`/posts/${post.id}/edit`}>Edit</Link>
-          <Link to="/posts">Back to list</Link>
+      <div className="mb-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-2xl font-bold">Post Details</h2>
+        <div className="flex gap-3">
+          <Link
+            className="text-blue-700 hover:underline"
+            to={`/posts/${post.id}/edit`}
+          >
+            Edit
+          </Link>
+          <Link className="text-blue-700 hover:underline" to="/posts">
+            Back to list
+          </Link>
         </div>
       </div>
 
       {error ? <ErrorState message={error} /> : null}
 
-      <article className="post-card full-width">
-        <h3>{post.title}</h3>
-        <p>{post.body}</p>
-        <p className="post-meta">User ID: {post.userId}</p>
+      <article className="mb-5 rounded-lg border border-slate-200 p-[0.85rem]">
+        <h3 className="mb-1.5 mt-0 text-lg font-semibold">
+          {post.title}
+        </h3>
+        <p className="m-0">{post.body}</p>
+        <p className="mt-2 text-slate-500">User ID: {post.userId}</p>
       </article>
 
-      <h3>Comments</h3>
+      <h3 className="text-xl font-semibold">Comments</h3>
       {commentsStatus === 'loading' ? (
         <LoadingState label="Loading comments..." />
       ) : null}
-      <ul className="comments-list">
+      <ul className="m-0 grid list-none gap-3 p-0">
         {comments.map(comment => (
-          <li key={comment.id}>
-            <p className="comment-name">{comment.name}</p>
-            <p>{comment.body}</p>
-            <p className="comment-email">{comment.email}</p>
+          <li
+            key={comment.id}
+            className="rounded-lg border border-slate-200 p-3"
+          >
+            <p className="mb-1 font-bold">{comment.name}</p>
+            <p className="m-0">{comment.body}</p>
+            <p className="mt-2 text-slate-500">{comment.email}</p>
           </li>
         ))}
       </ul>

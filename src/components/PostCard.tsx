@@ -10,13 +10,25 @@ interface PostCardProps {
 
 function PostCard({ post, deleting, onDelete }: PostCardProps) {
   return (
-    <article className="post-card">
-      <h3>{post.title}</h3>
-      <p>{post.body}</p>
+    <article className="rounded-lg border border-slate-200 p-[0.85rem]">
+      <h3 className="mb-1.5 mt-0 text-lg font-semibold">
+        {post.title}
+      </h3>
+      <p className="m-0">{post.body}</p>
 
-      <div className="post-card-actions">
-        <Link to={`/posts/${post.id}`}>Details</Link>
-        <Link to={`/posts/${post.id}/edit`}>Edit</Link>
+      <div className="mt-[0.9rem] flex items-center gap-3">
+        <Link
+          className="text-blue-700 hover:underline"
+          to={`/posts/${post.id}`}
+        >
+          Details
+        </Link>
+        <Link
+          className="text-blue-700 hover:underline"
+          to={`/posts/${post.id}/edit`}
+        >
+          Edit
+        </Link>
         <ConfirmDeleteButton
           disabled={deleting}
           onConfirm={() => onDelete(post.id)}

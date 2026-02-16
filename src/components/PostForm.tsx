@@ -60,7 +60,7 @@ function PostForm({
   };
 
   return (
-    <form className="post-form" onSubmit={handleSubmit}>
+    <form className="grid gap-2.5" onSubmit={handleSubmit}>
       <label htmlFor="userId">User ID</label>
       <input
         id="userId"
@@ -68,6 +68,7 @@ function PostForm({
         type="number"
         value={values.userId}
         onChange={event => updateField('userId', event.target.value)}
+        className="w-full rounded-lg border border-slate-300 p-2 text-base"
       />
 
       <label htmlFor="title">Title</label>
@@ -75,6 +76,7 @@ function PostForm({
         id="title"
         value={values.title}
         onChange={event => updateField('title', event.target.value)}
+        className="w-full rounded-lg border border-slate-300 p-2 text-base"
       />
 
       <label htmlFor="body">Body</label>
@@ -83,13 +85,18 @@ function PostForm({
         rows={8}
         value={values.body}
         onChange={event => updateField('body', event.target.value)}
+        className="w-full rounded-lg border border-slate-300 p-2 text-base"
       />
 
       {validationError ? (
-        <p className="status error">{validationError}</p>
+        <p className="my-2 text-red-600">{validationError}</p>
       ) : null}
 
-      <button type="submit" disabled={pending}>
+      <button
+        type="submit"
+        disabled={pending}
+        className="rounded-lg bg-blue-700 px-[0.9rem] py-2 text-[0.95rem] text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70"
+      >
         {pending ? 'Saving...' : submitLabel}
       </button>
     </form>
