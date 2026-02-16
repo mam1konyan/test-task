@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import PostDetailsPage from './pages/PostDetailsPage';
-import PostFormPage from './pages/PostFormPage';
-import PostsListPage from './pages/PostsListPage';
+import PostDetailsPage from '$/pages/PostDetailsPage';
+import PostFormPage from '$/pages/PostFormPage';
+import PostsListPage from '$/pages/PostsListPage';
 
 function App() {
   return (

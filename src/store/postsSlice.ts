@@ -6,14 +6,14 @@ import {
   getPostByIdApi,
   getPostsApi,
   updatePostApi,
-} from '../api/postsApi';
+} from '$/api/postsApi';
 import type {
   AsyncStatus,
   Comment,
   CreatePostRequest,
   Post,
   UpdatePostRequest,
-} from '../types/post';
+} from '$/types/post';
 
 interface PostsState {
   posts: Post[];

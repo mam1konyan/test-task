@@ -1,12 +1,12 @@
 import { useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ErrorState from '../components/ErrorState';
-import LoadingState from '../components/LoadingState';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
+import ErrorState from '$/components/ErrorState';
+import LoadingState from '$/components/LoadingState';
+import { useAppDispatch, useAppSelector } from '$/store/hooks';
 import {
   fetchCommentsByPostId,
   fetchPostById,
-} from '../store/postsSlice';
+} from '$/store/postsSlice';
 
 function PostDetailsPage() {
   const { postId } = useParams();

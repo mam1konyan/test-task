@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ErrorState from '../components/ErrorState';
-import LoadingState from '../components/LoadingState';
-import PostCard from '../components/PostCard';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { deletePost, fetchPosts } from '../store/postsSlice';
+import ErrorState from '$/components/ErrorState';
+import LoadingState from '$/components/LoadingState';
+import PostCard from '$/components/PostCard';
+import { useAppDispatch, useAppSelector } from '$/store/hooks';
+import { deletePost, fetchPosts } from '$/store/postsSlice';
 
 function PostsListPage() {
   const dispatch = useAppDispatch();

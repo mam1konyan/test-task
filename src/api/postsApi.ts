@@ -3,7 +3,7 @@ import type {
   CreatePostRequest,
   Post,
   UpdatePostRequest,
-} from '../types/post';
+} from '$/types/post';
 
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 

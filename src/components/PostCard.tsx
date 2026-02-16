@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { Post } from '../types/post';
+import type { Post } from '$/types/post';
 import ConfirmDeleteButton from './ConfirmDeleteButton';
 
 interface PostCardProps {

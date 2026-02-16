@@ -1,16 +1,18 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import ErrorState from '../components/ErrorState';
-import LoadingState from '../components/LoadingState';
-import PostForm, {
+import ErrorState from '$/components/ErrorState';
+import LoadingState from '$/components/LoadingState';
+import { GenericForm } from '$/components/GenericForm';
+import {
+  usePostsFormFields,
   type PostFormValues,
-} from '../components/PostForm';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
+} from '$/hooks/usePostsFormFields';
+import { useAppDispatch, useAppSelector } from '$/store/hooks';
 import {
   createPost,
   fetchPostById,
   updatePost,
-} from '../store/postsSlice';
+} from '$/store/postsSlice';
 
 function PostFormPage() {
   const { postId } = useParams();
@@ -45,17 +47,7 @@ function PostFormPage() {
     return posts.find(item => item.id === parsedPostId) ?? null;
   }, [isEditMode, parsedPostId, posts, selectedPost]);
 
-  const initialValues: PostFormValues = post
-    ? {
-        userId: post.userId,
-        title: post.title,
-        body: post.body,
-      }
-    : {
-        userId: 1,
-        title: '',
-        body: '',
-      };
+  const { fields } = usePostsFormFields({ post });
 
   const submitLabel = isEditMode ? 'Update Post' : 'Create Post';
 
@@ -109,11 +101,11 @@ function PostFormPage() {
 
       {submitError ? <ErrorState message={submitError} /> : null}
 
-      <PostForm
-        initialValues={initialValues}
-        submitLabel={submitLabel}
-        pending={mutationStatus === 'loading'}
+      <GenericForm<PostFormValues>
+        fields={fields}
         onSubmit={handleSubmit}
+        submitButtonText={submitLabel}
+        loading={mutationStatus === 'loading'}
       />
     </section>
   );
