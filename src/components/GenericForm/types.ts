@@ -1,4 +1,4 @@
-import type { FormikValues } from 'formik';
+import type { FormikHelpers, FormikValues } from 'formik';
 
 export enum GENERIC_FORM_TYPE {
   INPUT = 'INPUT',
@@ -30,7 +30,10 @@ export interface GenericFormField {
 
 export interface GenericFormProps<T extends FormikValues> {
   fields: GenericFormField[];
-  onSubmit: (values: T) => Promise<void> | void;
+  onSubmit: (
+    values: T,
+    helpers: FormikHelpers<T>
+  ) => Promise<void> | void;
   submitButtonText?: string;
   loading?: boolean;
 }

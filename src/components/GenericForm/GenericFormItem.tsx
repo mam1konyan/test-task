@@ -21,10 +21,10 @@ export const GenericFormItem = <T extends FormikValues>({
   const hasError = touched[name] && !!errors[name];
 
   const baseClassName =
-    'w-full rounded-lg border p-2 text-base focus:outline-none focus:ring-2 disabled:opacity-70 transition-colors';
+    'w-full rounded-xl border bg-white/5 p-3 text-base text-white placeholder:text-slate-500 transition-all focus:outline-none focus:ring-2 disabled:opacity-50';
   const stateClassName = hasError
-    ? 'border-red-500 focus:ring-red-200'
-    : 'border-slate-300 focus:ring-blue-500';
+    ? 'border-red-500/50 focus:ring-red-500/20'
+    : 'border-white/10 focus:border-blue-500/50 focus:ring-blue-500/20';
 
   const className = `${baseClassName} ${stateClassName}`;
 

@@ -30,10 +30,10 @@ function PostsListPage() {
 
   return (
     <section>
-      <div className="mb-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-2xl font-bold">Posts</h2>
+      <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-2xl font-bold text-white">Posts</h2>
         <Link
-          className="inline-flex rounded-lg bg-blue-700 px-[0.9rem] py-2 text-[0.95rem] text-white hover:bg-blue-800"
+          className="inline-flex rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40"
           to="/posts/new"
         >
           Create Post
@@ -45,7 +45,7 @@ function PostsListPage() {
       ) : null}
       {error ? <ErrorState message={error} /> : null}
 
-      <div className="grid gap-[0.9rem]">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {posts.map(post => (
           <PostCard
             key={post.id}

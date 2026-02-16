@@ -54,16 +54,21 @@ function PostDetailsPage() {
 
   return (
     <section>
-      <div className="mb-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-2xl font-bold">Post Details</h2>
-        <div className="flex gap-3">
+      <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-2xl font-bold text-white">
+          Post Details
+        </h2>
+        <div className="flex gap-4">
           <Link
-            className="text-blue-700 hover:underline"
+            className="text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
             to={`/posts/${post.id}/edit`}
           >
             Edit
           </Link>
-          <Link className="text-blue-700 hover:underline" to="/posts">
+          <Link
+            className="text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+            to="/posts"
+          >
             Back to list
           </Link>
         </div>
@@ -71,15 +76,21 @@ function PostDetailsPage() {
 
       {error ? <ErrorState message={error} /> : null}
 
-      <article className="mb-5 rounded-lg border border-slate-200 p-[0.85rem]">
-        <h3 className="mb-1.5 mt-0 text-lg font-semibold">
+      <article className="mb-8 rounded-xl border border-white/5 bg-white/5 p-6 shadow-xl backdrop-blur-sm">
+        <h3 className="mb-3 mt-0 text-xl font-semibold text-white">
           {post.title}
         </h3>
-        <p className="m-0">{post.body}</p>
-        <p className="mt-2 text-slate-500">User ID: {post.userId}</p>
+        <p className="text-lg text-slate-300 leading-relaxed">
+          {post.body}
+        </p>
+        <p className="mt-4 text-sm text-slate-500">
+          User ID: {post.userId}
+        </p>
       </article>
 
-      <h3 className="text-xl font-semibold">Comments</h3>
+      <h3 className="mb-4 text-xl font-semibold text-white">
+        Comments
+      </h3>
       {commentsStatus === 'loading' ? (
         <LoadingState label="Loading comments..." />
       ) : null}
@@ -87,11 +98,15 @@ function PostDetailsPage() {
         {comments.map(comment => (
           <li
             key={comment.id}
-            className="rounded-lg border border-slate-200 p-3"
+            className="rounded-xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10"
           >
-            <p className="mb-1 font-bold">{comment.name}</p>
-            <p className="m-0">{comment.body}</p>
-            <p className="mt-2 text-slate-500">{comment.email}</p>
+            <p className="mb-1 font-bold text-white">
+              {comment.name}
+            </p>
+            <p className="m-0 text-slate-300">{comment.body}</p>
+            <p className="mt-3 text-xs text-slate-500">
+              {comment.email}
+            </p>
           </li>
         ))}
       </ul>

@@ -51,31 +51,6 @@ function PostFormPage() {
 
   const submitLabel = isEditMode ? 'Update Post' : 'Create Post';
 
-  const handleSubmit = async (values: PostFormValues) => {
-    setSubmitError(null);
-    try {
-      if (isEditMode) {
-        await dispatch(
-          updatePost({
-            postId: parsedPostId,
-            payload: values,
-            method: 'PATCH',
-          })
-        ).unwrap();
-      } else {
-        await dispatch(createPost(values)).unwrap();
-      }
-
-      navigate('/posts');
-    } catch (submitErr) {
-      const message =
-        submitErr instanceof Error
-          ? submitErr.message
-          : 'Failed to save post.';
-      setSubmitError(message);
-    }
-  };
-
   if (isEditMode && detailsStatus === 'loading' && !post) {
     return <LoadingState label="Loading post data..." />;
   }
@@ -90,11 +65,14 @@ function PostFormPage() {
 
   return (
     <section>
-      <div className="mb-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-2xl font-bold">
+      <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-2xl font-bold text-white">
           {isEditMode ? 'Edit Post' : 'Create Post'}
         </h2>
-        <Link className="text-blue-700 hover:underline" to="/posts">
+        <Link
+          className="text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+          to="/posts"
+        >
           Back to list
         </Link>
       </div>
@@ -103,7 +81,30 @@ function PostFormPage() {
 
       <GenericForm<PostFormValues>
         fields={fields}
-        onSubmit={handleSubmit}
+        onSubmit={async values => {
+          setSubmitError(null);
+          try {
+            if (isEditMode) {
+              await dispatch(
+                updatePost({
+                  postId: parsedPostId,
+                  payload: values,
+                  method: 'PATCH',
+                })
+              ).unwrap();
+            } else {
+              await dispatch(createPost(values)).unwrap();
+            }
+
+            navigate('/posts');
+          } catch (submitErr) {
+            const message =
+              submitErr instanceof Error
+                ? submitErr.message
+                : 'Failed to save post.';
+            setSubmitError(message);
+          }
+        }}
         submitButtonText={submitLabel}
         loading={mutationStatus === 'loading'}
       />

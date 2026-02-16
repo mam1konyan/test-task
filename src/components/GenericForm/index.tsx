@@ -53,11 +53,11 @@ export const GenericForm = <T extends FormikValues>({
                     {label && (
                       <label
                         htmlFor={name}
-                        className="text-sm font-medium text-slate-700"
+                        className="text-sm font-medium text-slate-300"
                       >
                         {label}
                         {required && (
-                          <span className="ml-1 text-red-500">*</span>
+                          <span className="ml-1 text-red-400">*</span>
                         )}
                       </label>
                     )}
@@ -73,7 +73,7 @@ export const GenericForm = <T extends FormikValues>({
                       </Field>
                       <ErrorMessage name={name}>
                         {msg => (
-                          <div className="absolute bottom-0 left-0 text-xs text-red-600">
+                          <div className="absolute bottom-0 left-0 text-xs font-medium text-red-400">
                             {msg}
                           </div>
                         )}
@@ -84,13 +84,13 @@ export const GenericForm = <T extends FormikValues>({
               })}
             </div>
 
-            <div className="mt-2">
+            <div className="mt-6">
               <button
                 type="submit"
                 disabled={
                   !dirty || !isValid || isSubmitting || loading
                 }
-                className="w-full rounded-lg bg-blue-700 px-4 py-2 text-[0.95rem] font-medium text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-70"
+                className="w-full rounded-xl bg-blue-600 px-6 py-3 text-[0.95rem] font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {loading || isSubmitting
                   ? 'Processing...'
