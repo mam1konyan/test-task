@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import ErrorState from '$/components/ErrorState';
-import LoadingState from '$/components/LoadingState';
+import { PostDetailsSkeleton } from '$/components/Skeletons';
 import { GenericForm } from '$/components/GenericForm';
 import {
   usePostsFormFields,
@@ -52,7 +52,20 @@ function PostFormPage() {
   const submitLabel = isEditMode ? 'Update Post' : 'Create Post';
 
   if (isEditMode && detailsStatus === 'loading' && !post) {
-    return <LoadingState label="Loading post data..." />;
+    return (
+      <section>
+        <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <h2 className="text-2xl font-bold text-white">Edit Post</h2>
+          <Link
+            className="cursor-pointer text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+            to="/posts"
+          >
+            Back to list
+          </Link>
+        </div>
+        <PostDetailsSkeleton />
+      </section>
+    );
   }
 
   if (isEditMode && !post && detailsStatus === 'failed') {
@@ -70,7 +83,7 @@ function PostFormPage() {
           {isEditMode ? 'Edit Post' : 'Create Post'}
         </h2>
         <Link
-          className="text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+          className="cursor-pointer text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
           to="/posts"
         >
           Back to list

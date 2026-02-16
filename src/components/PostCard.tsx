@@ -20,13 +20,13 @@ function PostCard({ post, deleting, onDelete }: PostCardProps) {
 
       <div className="mt-auto flex items-center gap-4 pt-2">
         <Link
-          className="text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+          className="cursor-pointer text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
           to={`/posts/${post.id}`}
         >
           Details
         </Link>
         <Link
-          className="text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+          className="cursor-pointer text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
           to={`/posts/${post.id}/edit`}
         >
           Edit

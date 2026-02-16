@@ -16,7 +16,7 @@ function ConfirmDeleteButton({
 
   return (
     <button
-      className="rounded-xl bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400 border border-red-500/20 transition-all hover:bg-red-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+      className="cursor-pointer rounded-xl bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400 border border-red-500/20 transition-all hover:bg-red-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
       type="button"
       onClick={handleClick}
       disabled={disabled}

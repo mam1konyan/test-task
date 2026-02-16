@@ -90,7 +90,7 @@ export const GenericForm = <T extends FormikValues>({
                 disabled={
                   !dirty || !isValid || isSubmitting || loading
                 }
-                className="w-full rounded-xl bg-blue-600 px-6 py-3 text-[0.95rem] font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full cursor-pointer rounded-xl bg-blue-600 px-6 py-3 text-[0.95rem] font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500 hover:shadow-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {loading || isSubmitting
                   ? 'Processing...'

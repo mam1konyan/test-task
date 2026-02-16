@@ -1,7 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ErrorState from '$/components/ErrorState';
-import LoadingState from '$/components/LoadingState';
+import {
+  PostDetailsSkeleton,
+  CommentSkeleton,
+} from '$/components/Skeletons';
 import { useAppDispatch, useAppSelector } from '$/store/hooks';
 import {
   fetchCommentsByPostId,
@@ -43,7 +46,24 @@ function PostDetailsPage() {
   }
 
   if (detailsStatus === 'loading' && !post) {
-    return <LoadingState label="Loading post..." />;
+    return (
+      <section>
+        <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <h2 className="text-2xl font-bold text-white">
+            Post Details
+          </h2>
+          <div className="flex gap-4">
+            <Link
+              className="cursor-pointer text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+              to="/posts"
+            >
+              Back to list
+            </Link>
+          </div>
+        </div>
+        <PostDetailsSkeleton />
+      </section>
+    );
   }
 
   if (!post) {
@@ -60,13 +80,13 @@ function PostDetailsPage() {
         </h2>
         <div className="flex gap-4">
           <Link
-            className="text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+            className="cursor-pointer text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
             to={`/posts/${post.id}/edit`}
           >
             Edit
           </Link>
           <Link
-            className="text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
+            className="cursor-pointer text-sm font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
             to="/posts"
           >
             Back to list
@@ -91,24 +111,27 @@ function PostDetailsPage() {
       <h3 className="mb-4 text-xl font-semibold text-white">
         Comments
       </h3>
-      {commentsStatus === 'loading' ? (
-        <LoadingState label="Loading comments..." />
-      ) : null}
       <ul className="m-0 grid list-none gap-3 p-0">
-        {comments.map(comment => (
-          <li
-            key={comment.id}
-            className="rounded-xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10"
-          >
-            <p className="mb-1 font-bold text-white">
-              {comment.name}
-            </p>
-            <p className="m-0 text-slate-300">{comment.body}</p>
-            <p className="mt-3 text-xs text-slate-500">
-              {comment.email}
-            </p>
-          </li>
-        ))}
+        {commentsStatus === 'loading'
+          ? Array.from({ length: 3 }).map((_, i) => (
+              <li key={i}>
+                <CommentSkeleton />
+              </li>
+            ))
+          : comments.map(comment => (
+              <li
+                key={comment.id}
+                className="rounded-xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10"
+              >
+                <p className="mb-1 font-bold text-white">
+                  {comment.name}
+                </p>
+                <p className="m-0 text-slate-300">{comment.body}</p>
+                <p className="mt-3 text-xs text-slate-500">
+                  {comment.email}
+                </p>
+              </li>
+            ))}
       </ul>
       {commentsStatus === 'succeeded' && comments.length === 0 ? (
         <p>No comments for this post.</p>
