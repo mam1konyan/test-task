@@ -1,0 +1,5 @@
+pnpm-lock.yaml
+package-lock.json
+.idea
+.next
+node_modules
